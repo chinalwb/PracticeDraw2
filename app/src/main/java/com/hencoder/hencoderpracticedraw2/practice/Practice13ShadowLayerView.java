@@ -2,7 +2,9 @@ package com.hencoder.hencoderpracticedraw2.practice;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -24,13 +26,20 @@ public class Practice13ShadowLayerView extends View {
 
     {
         // 使用 Paint.setShadowLayer() 设置阴影
+        paint.setShadowLayer(10, 15, 5, Color.RED);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        paint.setShadowLayer(10, 15, 5, Color.RED);
         paint.setTextSize(120);
         canvas.drawText("Hello HenCoder", 50, 200, paint);
+
+        Path myPath = new Path();
+        paint.setShadowLayer(10, 15, 5, Color.BLUE);
+        paint.getTextPath("Hello HenCoder", 0, 14, 50, 300, myPath);
+        canvas.drawPath(myPath, paint);
     }
 }
